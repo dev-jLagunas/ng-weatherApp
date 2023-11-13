@@ -1,0 +1,44 @@
+@if (cityName) {
+<div>
+  <h3 class="text-center tracking-widest mt-8 xl:mt-0 2xl:mt-0">
+    5 Day Forecast
+  </h3>
+</div>
+<section
+  class="md:grid md:grid-cols-2 md:gap-x-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5 2xl:gap-x-2"
+>
+  @for (forecast of fiveDayForecast; track forecast.dt) {
+  <article
+    class="border w-max xl:w-48 2xl:w-44 h-max 2xl:h-96 mx-auto mt-2 rounded-lg text-center mb-2 snow-bg"
+  >
+    <div class="mt-8 flex-col space-y-2 mb-4">
+      <h3 class="text-base">{{ forecast.dt_txt | date : "EEEE, MMM d" }}</h3>
+      <p class="text-xl">{{ forecast.weather.main }}</p>
+      <p class="text-sm">{{ forecast.weather.description }}</p>
+      <div class="w-max mx-auto">
+        <img
+          [src]="getWeatherIconUrl(forecast.weather.icon)"
+          alt="Weather Icon"
+          class="h-20 sway"
+        />
+      </div>
+    </div>
+    <div class="flex justify-evenly xl:flex-col text-xs space-y-2">
+      <p>
+        Temperature <span class="block">{{ forecast.main.temp }}&deg;C</span>
+      </p>
+      <p>
+        Feels Like
+        <span class="block">{{ forecast.main.feels_like }}&deg;C</span>
+      </p>
+      <p>
+        Pressure <span class="block">{{ forecast.main.pressure }}hPa</span>
+      </p>
+      <p>
+        Humidity <span class="block">{{ forecast.main.humidity }}%</span>
+      </p>
+    </div>
+  </article>
+  }
+</section>
+}

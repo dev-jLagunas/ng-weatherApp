@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  font-family: "Rubik";
+}
+
+.sway {
+  animation-name: cloudMovement;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  margin-top: -1rem;
+}
+
+@keyframes cloudMovement {
+  from {
+    margin-left: 0px;
+  }
+  to {
+    margin-left: 65px;
+  }
+}
+
+body {
+  background-image: linear-gradient(
+    to right,
+    #090a0b,
+    #060c11,
+    #040d16,
+    #030e1b,
+    #020f1f
+  );
+}
