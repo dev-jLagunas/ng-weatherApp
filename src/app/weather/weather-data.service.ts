@@ -4,12 +4,15 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WeatherData } from './weather.interface';
 import { FiveDayForecast } from './weather.interface';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherDataService {
-  private apiKey: string = '66115d93752379ae34741f97bca71e20';
+  private apiKey: string = environment.apiKey;
   private oneDayForecastAPI: string =
     'https://api.openweathermap.org/data/2.5/weather?q=';
   private fiveDayForecastAPI: string =
@@ -43,8 +46,13 @@ export class WeatherDataService {
           },
           dt: data.dt,
         };
-
         return weatherData;
+      }),
+      catchError((error: any) => {
+        console.error('An error occurred: ', error);
+        return throwError(
+          () => new Error('Something went wrong. Please try again later.')
+        );
       })
     );
   }
@@ -78,8 +86,13 @@ export class WeatherDataService {
               dt_txt: forecast.dt_txt,
             };
           });
-
         return filteredData;
+      }),
+      catchError((error: any) => {
+        console.error('An error occurred: ', error);
+        return throwError(
+          () => new Error('Something went wrong. Please try again later.')
+        );
       })
     );
   }

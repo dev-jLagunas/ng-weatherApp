@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeatherData } from './weather.interface';
 import { WeatherDataService } from './weather-data.service';
@@ -16,13 +10,11 @@ import { WeatherDataService } from './weather-data.service';
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.css',
 })
-export class WeatherComponent implements OnInit, OnChanges {
+export class WeatherComponent implements OnChanges {
   @Input() cityName: string = '';
   oneDayForecastData!: WeatherData;
 
   constructor(private weatherDataService: WeatherDataService) {}
-
-  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['cityName'] && !changes['cityName'].firstChange) {
