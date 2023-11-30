@@ -11,7 +11,7 @@ import { environment } from '../environments/environments.prod';
   providedIn: 'root',
 })
 export class WeatherDataService {
-  private apiKey = environment.apiKey;
+  private apiKey = '66115d93752379ae34741f97bca71e20';
   private oneDayForecastAPI: string =
     'https://api.openweathermap.org/data/2.5/weather?q=';
   private fiveDayForecastAPI: string =
