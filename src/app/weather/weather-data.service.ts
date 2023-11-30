@@ -6,12 +6,12 @@ import { WeatherData } from './weather.interface';
 import { FiveDayForecast } from './weather.interface';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-
+import { environment } from '../environments/environments.prod';
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherDataService {
-  private apiKey = process.env['API_KEY'];
+  private apiKey = environment.apiKey;
   private oneDayForecastAPI: string =
     'https://api.openweathermap.org/data/2.5/weather?q=';
   private fiveDayForecastAPI: string =
